@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+  <title>Mellstroy Game</title>
+  <style>
+    :root{
+      --bg:#0b0616;
+      --violet:#9333ea;
+      --violet-mid:rgba(147,51,234,0.25);
+      --text:#f1e7ff;
+      --grad:linear-gradient(90deg,#9333ea,#a855f7,#d946ef);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{height:100%}
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(800px 600px at 50% 20%, var(--violet-mid), transparent 70%),
+        var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+   
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(90deg, rgba(147,51,234,0.05) 0px, rgba(147,51,234,0.05) 1px, transparent 1px, transparent 100px),
+        repeating-linear-gradient(0deg, rgba(147,51,234,0.05) 0px, rgba(147,51,234,0.05) 1px, transparent 1px, transparent 100px);
+      animation:moveGrid 40s linear infinite;
+    }
+    @keyframes moveGrid{from{background-position:0 0,0 0}to{background-position:100px 100px,100px 100px}}
+
+  
+    header{
+      position:fixed;
+      top:0;left:0;width:100%;height:90px;
+      display:flex;align-items:center;justify-content:center;gap:20px;
+      backdrop-filter:blur(8px);
+      background:rgba(10,6,18,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      z-index:100;
+    }
+
+    .nav-button{
+      color:var(--text);
+      text-decoration:none;
+      padding:8px 20px;
+      border-radius:40px;
+      font-weight:600;
+      background:rgba(147,51,234,0.06);
+      transition:all .3s ease;
+    }
+    .nav-button:hover{
+      background:rgba(147,51,234,0.2);
+      box-shadow:0 0 15px rgba(147,51,234,0.4);
+    }
+
+    .logo{
+      width:90px;height:auto;display:block;
+      filter:drop-shadow(0 0 25px rgba(168,85,247,0.35));
+      transition:transform .4s ease, filter .4s ease;
+    }
+    .logo:hover{
+      transform:scale(1.05);
+      filter:drop-shadow(0 0 45px rgba(168,85,247,0.55));
+    }
+
+ 
+    main{
+      width:100%;
+      max-width:1100px;
+      padding:140px 20px 80px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:30px;
+      position:relative;
+      z-index:1;
+      text-align:center;
+    }
+
+    h1{
+      font-size:64px;
+      line-height:1.1;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:0 0 20px rgba(168,85,247,0.28);
+    }
+
+    p{
+      font-size:1.1rem;
+      max-width:700px;
+      opacity:0.9;
+    }
+
+    @media(max-width:768px){
+      h1{font-size:42px}
+      header{height:72px}
+      .nav-button{font-size:0.9rem;padding:6px 16px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="history.html" class="nav-button">История</a>
+    <a href="memes.html" class="nav-button">Мемы</a>
+    <a href="main.html"><img src="../static/logo.png" alt="Logo" class="logo"></a>
+    <a href="trophies.html" class="nav-button">Трофеи</a>
+    <a href="contacts.html" class="nav-button">Контакты</a>
+  </header>
+
+  <main>
+    <h1 style="font-family: Days One, sans-serif;"><strong>Привет, Мэл, салют боровы</strong></h1>
+    <h3>надеюсь, что вы оцените мой труд и идею</h3>
+    <h3>Тикток автора: <a href="https://www.tiktok.com/@melltiktok1337">нажмите</a></h3>
+    <h3>лучший проект (кликабельно):</h3>
+    <a href="https://mellstroy.club/"><img src="../static/logo.png" style="width:150px;height: 150px;"></a>
+    <p></p>
+  </main>
+</body>
+</html>

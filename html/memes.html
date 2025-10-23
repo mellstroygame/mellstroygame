@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+  <title></title>
+  <style>
+    :root{
+      --bg:#0b0616;
+      --violet:#9333ea;
+      --violet-mid:rgba(147,51,234,0.25);
+      --text:#f1e7ff;
+      --grad:linear-gradient(90deg,#9333ea,#a855f7,#d946ef);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{height:100%}
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(800px 600px at 50% 20%, var(--violet-mid), transparent 70%),
+        var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(90deg, rgba(147,51,234,0.05) 0px, rgba(147,51,234,0.05) 1px, transparent 1px, transparent 100px),
+        repeating-linear-gradient(0deg, rgba(147,51,234,0.05) 0px, rgba(147,51,234,0.05) 1px, transparent 1px, transparent 100px);
+      animation:moveGrid 40s linear infinite;
+    }
+    @keyframes moveGrid{
+      from{background-position:0 0,0 0}
+      to{background-position:100px 100px,100px 100px}
+    }
+
+    header{
+      position:fixed;
+      top:0;left:0;width:100%;height:90px;
+      display:flex;align-items:center;justify-content:center;gap:20px;
+      backdrop-filter:blur(8px);
+      background:rgba(10,6,18,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      z-index:100;
+    }
+    .nav-button{
+      color:var(--text);
+      text-decoration:none;
+      padding:8px 20px;
+      border-radius:40px;
+      font-weight:600;
+      background:rgba(147,51,234,0.06);
+      transition:all .3s ease;
+    }
+    .nav-button:hover{
+      background:rgba(147,51,234,0.2);
+      box-shadow:0 0 15px rgba(147,51,234,0.4);
+    }
+    .logo{
+      width:90px;
+      height:auto;
+      display:block;
+    }
+
+    main{
+      width:100%;
+      max-width:1100px;
+      padding:140px 20px 80px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:30px;
+      position:relative;
+      z-index:1;
+    }
+
+    h1{
+      font-family:'Days One', sans-serif;
+      font-size:64px;
+      line-height:1;
+      margin:0;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:0 0 20px rgba(168,85,247,0.28);
+      text-align:center;
+    }
+
+    .meme-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      background:rgba(147,51,234,0.1);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:25px;
+      padding:25px;
+      width:100%;
+      box-shadow:0 0 25px rgba(147,51,234,0.25);
+      transition:transform .4s ease, box-shadow .4s ease;
+      backdrop-filter:blur(10px);
+    }
+
+    .meme-card:hover{
+      transform:scale(1.02);
+      box-shadow:0 0 40px rgba(168,85,247,0.4);
+    }
+
+    .meme-text{
+      flex:1;
+      text-align:left;
+      font-size:1rem;
+      line-height:1.5;
+      color:var(--text);
+      opacity:0.9;
+    }
+
+    .meme-image, video{
+      width:250px;
+      height:250px;
+      object-fit:cover;
+      border-radius:20px;
+      border:3px solid rgba(168,85,247,0.25);
+      box-shadow:0 0 25px rgba(168,85,247,0.35);
+    }
+
+    .play-button{
+      margin-top:15px;
+      padding:10px 24px;
+      border:none;
+      border-radius:30px;
+      background:var(--grad);
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      transition:all .3s ease;
+    }
+    .play-button:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 25px rgba(168,85,247,0.5);
+    }
+
+    .stop-button{
+      margin-top:15px;
+      padding:10px 24px;
+      border:none;
+      border-radius:30px;
+      background:var(--grad);
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      transition:all .3s ease;
+    }
+    .stop-button:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 25px rgba(168,85,247,0.5);
+    }
+
+    @media(max-width:768px){
+      header{height:72px}
+      h1{font-size:40px}
+      .meme-card{flex-direction:column;text-align:center;}
+      .meme-image, video{width:90%;height:auto;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="nav-button" href="history.html">История</a>
+    <a class="nav-button" href="memes.html">Мемы</a>
+    <a href="main.html"><img class="logo" src="../static/logo.png" alt="Logo"></a>
+    <a class="nav-button" href="trophies.html">Трофеи</a>
+    <a class="nav-button" href="contacts.html">Контакты</a>
+  </header>
+
+  <main>
+     <h1>Интерактивные мемы</h1>
+
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>Бэм бэм бэм</h2>
+        <p>Попробуй нажимать на кнопку</p>
+        <button class="play-button">Быстрее</button>
+        <button class="stop-button">Остановить</button>
+      </div>
+      <img src="../static/memes/bembembem.jpg"  class="meme-image">
+    </div>
+
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>Фрукты с Мэллом</h2>
+        <p>виноград там, бананы, сливы, яблоки на зелёных</p>
+        <button id="fruit-button" class="play-button">Вытянуть</button>
+        <span id="fruit-score">Счёт: 0</span>
+      </div>
+      <img id="fruit-image" src="../static/memes/fruits.jpg" class="meme-image">
+    </div>
+
+    <h1>Классика</h1>
+
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>Заработал, нарулил</h2>
+        <p>а что такое?</p>
+        <button class="play-button" data-video="../static/memes/vids/mem1.mp4">Включить</button>
+      </div>
+      <img src="../static/memes/vids/mem1.jpg" alt="Meme 1" class="meme-image">
+    </div>
+
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>Как ты будешь выглядеть?</h2>
+        <p>лысый, дрыщавый и злой</p>
+        <button class="play-button" data-video="../static/memes/vids/mem2.mp4">Включить</button>
+      </div>
+      <img src="../static/memes/vids/mem2.jpg" alt="Meme 2" class="meme-image">
+    </div>
+
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>Вау, ВАУ!</h2>
+        <p>Браво, босс, браво!!!</p>
+        <button class="play-button" data-video="../static/memes/vids/mem3.mp4">Включить</button>
+      </div>
+      <img src="../static/memes/vids/mem3.jpg" alt="Meme 3" class="meme-image">
+    </div>
+ 
+    <div class="meme-card">
+      <div class="meme-text">
+        <h2>АМ АМ АМ АМ</h2>
+        <p>ам ам ам а - а - а - м</p>
+        <button class="play-button" data-video="../static/memes/vids/mem4.mp4">Включить</button>
+      </div>
+      <img src="../static/memes/vids/mem4.jpg" alt="Meme 4" class="meme-image">
+    </div>
+
+  <div class="meme-card">
+      <div class="meme-text">
+        <h2>Я уже красный</h2>
+        <p>Нормально не получится!</p>
+        <button class="play-button" data-video="../static/memes/vids/mem5.mp4">Включить</button>
+      </div>
+      <img src="../static/memes/vids/mem5.jpg" alt="Meme 5" class="meme-image">
+    </div>
+
+    
+
+
+  </main>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+
+  let bemAudio = null;
+  let bemSpeed = 1.0;
+
+  
+  document.querySelectorAll('.play-button').forEach(button => {
+    const card = button.closest('.meme-card');
+    const isBemMeme = card.querySelector('h2')?.textContent.includes('Бэм');
+    if (isBemMeme) return;
+
+    button.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      const videoSrc = button.getAttribute('data-video');
+      if (!videoSrc) return;
+
+      const video = document.createElement('video');
+      video.src = videoSrc;
+      video.autoplay = true;
+      video.controls = false;
+      video.loop = false;
+      video.className = 'meme-image';
+
+      img.replaceWith(video);
+
+      
+       video.addEventListener('ended', () => {
+      video.replaceWith(img);
+    });
+    });
+  });
+
+  function handleBemButton() {
+    const clickSound = new Audio("../static/audio/faster.mp3");
+    clickSound.playbackRate = 1.3;
+    clickSound.volume = 0.3;
+    clickSound.play();
+
+    if (!bemAudio) {
+      bemAudio = new Audio("../static/audio/bem.mp3");
+      bemAudio.loop = true;
+      bemAudio.volume = 0.8;
+      bemAudio.playbackRate = bemSpeed;
+      bemAudio.play();
+    } else {
+      bemSpeed *= 1.2;
+      if (bemSpeed > 2.3) bemSpeed = 1;
+      bemAudio.playbackRate = bemSpeed;
+    }
+  }
+
+  function stopBemAudio() {
+    if (bemAudio) {
+      bemAudio.pause();
+      bemAudio.currentTime = 0;
+      bemAudio = null;
+      bemSpeed = 1.0;
+    }
+  }
+
+  
+  const firstMemeCard = document.querySelector('.meme-card');
+  const bemButton = firstMemeCard.querySelector('.play-button');
+  const stopButton = firstMemeCard.querySelector('.stop-button');
+
+  if (bemButton) bemButton.addEventListener("click", handleBemButton);
+  if (stopButton) stopButton.addEventListener("click", stopBemAudio);
+
+  let fruitScore = 0;
+
+  const fruitButton = document.getElementById("fruit-button");
+  const fruitImage = document.getElementById("fruit-image");
+  const fruitScoreDisplay = document.getElementById("fruit-score");
+
+  if (fruitButton && fruitImage && fruitScoreDisplay) {
+    const fruits = {
+      1: { img: "../static/fruits/sliva.jpg", sound: "../static/audio/fruits/slivi.mp3" },
+      2: { img: "../static/fruits/banan.jpg", sound: "../static/audio/fruits/banani.mp3" },
+      3: { img: "../static/fruits/yabloki.jpg", sound: "../static/audio/fruits/yabloki.mp3" },
+      4: { img: "../static/fruits/vinograd.jpg", sound: "../static/audio/fruits/vinograd.mp3" },
+      5: { img: "../static/fruits/dolb.jpg", sound: "../static/audio/fruits/dolb.mp3" } 
+    };
+
+    fruitButton.addEventListener("click", () => {
+      const random = Math.floor(Math.random() * 5) + 1;
+      const fruit = fruits[random];
+
+      const sound = new Audio(fruit.sound);
+      sound.volume = 0.7;
+      sound.play();
+
+      fruitImage.src = fruit.img;
+
+      if (random === 5) {
+        fruitScore = 0;
+        fruitScoreDisplay.textContent = "Счёт сброшен";
+        fruitScoreDisplay.style.color = "#ff4d4d";
+      } else {
+        fruitScore++;
+        fruitScoreDisplay.textContent = "Счёт: " + fruitScore;
+        fruitScoreDisplay.style.color = "#aaffaa";
+      }
+    });
+  } 
+
+});
+</script>
+
+
+
+</body>
+</html>
